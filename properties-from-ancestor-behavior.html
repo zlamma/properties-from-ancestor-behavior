@@ -149,7 +149,30 @@ class ... extends ...
 @demo demo/index.html
 */
     PropertiesFromAncestorBehavior = function (propsDefObject) {
-        'use strict';
+        return function (baseClass) {
+            let propertyTypesByName = {};
+
+            let resultClass = class extends baseClass {
+                static get properties() {
+                }
+                connectedCallback() {
+                    super.connectedCallback();
+                    for (var propName in propsDefObject) {
+                      //...
+                    }
+                }
+                disconnectedCallback() {
+                    super.disconnectedCallback();
+                    for (var propName in propsDefObject) {
+                        //...
+                    }
+                }
+            }
+            for (var propName in propsDefObject) {
+                propertyTypesByName[propName] = findPropTypeInBaseClassChain(..., TODO need to be able to pass propName);
+            }
+            return result;
+        };
         return Object.keys(propsDefObject).map(function (propName) {
                 let propDef = propsDefObject[propName];
 

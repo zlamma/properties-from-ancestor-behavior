@@ -8,16 +8,19 @@
     </template>
 </dom-module>
 <script>
-    class TestDescendantComponentWithMultipleUsagesOfTheMixin extends Polymer.mixinBehaviors([
+    class TestDescendantComponentWithMultipleUsagesOfTheMixin extends
         PropertiesFromAncestorBehavior({
             myProp1: {
             },
-        }),
+        })
+        (
         PropertiesFromAncestorBehavior({
             myProp2: {
             },
-        }),
-    ], Polymer.Element){
+        })
+        )
+        (Polymer.Element)
+    {
         static get is() { return "test-descendant-component-with-multiple-usages-of-the-mixin"; }
         static get properties() {
             return {
